@@ -1,3 +1,4 @@
+Current configuration : 1028 bytes
 !
 version 15.4
 no service timestamps log datetime msec
@@ -22,7 +23,7 @@ no ipv6 cef
 !
 !
 !
-username admin privilege 15 secret 5 $1$mERr$IpyVRFH179ZUcDuYwsHok1
+username admin privilege 15 secret 5 $1$mERr$L5q8k4Wad4Kt1eadAMi4k1
 !
 !
 !
@@ -33,8 +34,8 @@ username admin privilege 15 secret 5 $1$mERr$IpyVRFH179ZUcDuYwsHok1
 !
 !
 !
-ip ssh version 2
-ip domain-name netwerk.local
+no ip domain-lookup
+ip domain-name mijnnetwerk.local
 !
 !
 spanning-tree mode pvst
@@ -45,16 +46,18 @@ spanning-tree mode pvst
 !
 !
 interface GigabitEthernet0/0/0
- ip address 192.168.10.65 255.255.255.240
+ description Administratie_HR
+ ip address 192.168.20.1 255.255.255.0
  duplex auto
  speed auto
- ipv6 address 2001:DB8:10:1::1/64
+ ipv6 address 2001:DB8:20::1/64
 !
 interface GigabitEthernet0/0/1
- ip address 192.168.10.33 255.255.255.224
+ description Ontwikkelaars
+ ip address 192.168.10.1 255.255.255.0
  duplex auto
  speed auto
- ipv6 address 2001:DB8:10:2::1/64
+ ipv6 address 2001:DB8:10::1/64
 !
 interface Vlan1
  no ip address
@@ -66,26 +69,23 @@ ip flow-export version 9
 !
 !
 !
+banner motd ^C
+Toegang Verboden zonder toestemming^C
 !
 !
 !
 !
 line con 0
- password 7 08117462
+ password 7 08315442
  login
 !
 line aux 0
 !
 line vty 0 4
- password 7 082D545E
- login
- transport input ssh
-line vty 5 15
- password 7 082D545E
+ password 7 08315442
  login
  transport input ssh
 !
 !
 !
 end
-
